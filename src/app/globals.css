@@ -1,0 +1,380 @@
+@import "tailwindcss";
+
+@theme {
+  /* Arambh brand — derived from the official logo: gold, bronze, warm ivory */
+  --color-paper: #fbfaf6;
+  --color-paper-2: #f6f4ee;
+  --color-ink: #16130c;
+  --color-ink-soft: #453b26;
+  --color-muted: #6f6a5c;
+  --color-line: #e9e4d5;
+  --color-line-strong: #d8d0b8;
+  --color-line-dark: rgba(251, 250, 245, 0.14);
+
+  --color-brand: #6b5423;
+  --color-brand-deep: #241c0d;
+  --color-brand-mid: #8a6b28;
+  --color-brand-tint: #f3ecda;
+
+  --color-gold: #d9a637;
+  --color-gold-soft: #f0dfae;
+  --color-gold-deep: #a1781f;
+
+  --font-display: var(--font-brandsans);
+  --font-serif: var(--font-instrument);
+  --font-sans: var(--font-inter);
+
+  --shadow-card: 0 1px 2px rgba(31, 25, 13, 0.04), 0 14px 34px -14px rgba(31, 25, 13, 0.12);
+  --shadow-lift: 0 2px 4px rgba(31, 25, 13, 0.05), 0 28px 56px -20px rgba(31, 25, 13, 0.24);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-paper);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+  border: 2px solid var(--color-paper);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-mid);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Primitives ---------- */
+
+.container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .container-x {
+    padding-inline: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .container-x {
+    padding-inline: 2.5rem;
+  }
+}
+
+.section {
+  padding-block: 5rem;
+}
+@media (min-width: 1024px) {
+  .section {
+    padding-block: 7.5rem;
+  }
+}
+
+/* Pill badge eyebrow: dot + tracked uppercase label, as in the brand design */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--color-gold);
+}
+.eyebrow-dark {
+  color: rgba(250, 249, 245, 0.75);
+  background: rgba(251, 250, 245, 0.06);
+  border-color: var(--color-line-dark);
+}
+.eyebrow-dark::before {
+  background: var(--color-gold);
+}
+
+.h-display {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.h-serif-accent {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  padding: 0.9rem 1.6rem;
+  transition: transform 0.25s var(--ease-out-soft), box-shadow 0.25s var(--ease-out-soft),
+    background-color 0.25s, color 0.25s, border-color 0.25s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn svg {
+  transition: transform 0.3s var(--ease-out-soft);
+}
+.btn:hover svg {
+  transform: translateX(3px);
+}
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn-primary:hover {
+  background: var(--color-brand);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-1px);
+}
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+.btn-gold:hover {
+  background: var(--color-gold-soft);
+  box-shadow: 0 18px 40px -16px rgba(217, 166, 55, 0.45);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+}
+.btn-ghost:hover {
+  border-color: var(--color-ink);
+  transform: translateY(-1px);
+}
+.btn-ghost-dark {
+  background: transparent;
+  color: var(--color-paper);
+  border: 1px solid var(--color-line-dark);
+}
+.btn-ghost-dark:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  transition: transform 0.35s var(--ease-out-soft), box-shadow 0.35s var(--ease-out-soft),
+    border-color 0.35s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-line-strong);
+}
+/* Cream tile card: warm surface with an icon tile, as in the brand design */
+.card-cream {
+  background: var(--color-paper-2);
+}
+.card-cream:hover {
+  background: #fff;
+}
+
+/* White icon tile that sits on cream cards */
+.icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 0.9rem;
+  color: var(--color-brand);
+}
+
+/* Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  transition: border-color 0.3s var(--ease-out-soft), transform 0.3s var(--ease-out-soft);
+}
+.chip:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Marquee */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 36s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Dark panels */
+.dark-panel {
+  background:
+    radial-gradient(80rem 40rem at 80% -10%, rgba(217, 166, 55, 0.10), transparent 60%),
+    var(--color-brand-deep);
+  color: var(--color-paper);
+}
+
+/* Footer signature band: deep bronze fading into brand gold */
+.gold-band {
+  background: linear-gradient(180deg, var(--color-brand-deep) 0%, #4a3610 34%, #8a6420 68%, #c08d2b 100%);
+  color: var(--color-paper);
+}
+
+/* Floating pill navigation shell */
+.nav-pill {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-line);
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 2px rgba(31, 25, 13, 0.03), 0 16px 40px -20px rgba(31, 25, 13, 0.18);
+}
+
+/* Slow vertical drift for hero workflow cards */
+@keyframes float-y {
+  from {
+    transform: translateY(-6px) rotate(var(--float-rot, 0deg));
+  }
+  to {
+    transform: translateY(8px) rotate(var(--float-rot, 0deg));
+  }
+}
+.float-slow {
+  animation: float-y 6s ease-in-out infinite alternate;
+}
+.float-slow-late {
+  animation: float-y 7s ease-in-out 0.8s infinite alternate;
+}
+
+/* Frosted glass chip cards used in the hero */
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 2px rgba(31, 25, 13, 0.04), 0 20px 44px -18px rgba(31, 25, 13, 0.16);
+  border-radius: 1rem;
+}
+
+/* Underline link */
+.link-underline {
+  position: relative;
+  font-weight: 600;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out-soft);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
