@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { company, navLinks } from "@/lib/content";
 import { AscentMark } from "./AscentMark";
 import { Icon } from "./Icons";
+import Image from "next/image";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -45,8 +46,18 @@ export function Navbar() {
             scrolled ? "h-14 lg:h-16" : "h-16 lg:h-20"
           }`}
         >
-          <Link href="/" className="flex items-center gap-2.5" aria-label="Arambh Advisory, home">
-            <AscentMark className="h-8 w-8" />
+          <Link
+            href="/"
+            className="flex items-center gap-2.5"
+            aria-label="Arambh Advisory, home"
+          >
+            <Image
+              className="object-fit"
+              width={30}
+              height={30}
+              alt="A"
+              src={"/logo.png"}
+            />
             <span className="leading-tight">
               <span className="font-display block text-[0.82rem] font-semibold uppercase tracking-[0.05em] text-ink">
                 Arambh Advisory
@@ -59,7 +70,8 @@ export function Navbar() {
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
             {navLinks.map((l) => {
-              const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+              const active =
+                l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
               return (
                 <Link
                   key={l.href}
@@ -79,10 +91,16 @@ export function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <a href={company.phoneHref} className="text-sm font-semibold text-ink-soft transition-colors hover:text-ink">
+            <a
+              href={company.phoneHref}
+              className="text-sm font-semibold text-ink-soft transition-colors hover:text-ink"
+            >
               {company.phone}
             </a>
-            <Link href="/contact" className="btn btn-primary !px-5 !py-2.5 text-sm">
+            <Link
+              href="/contact"
+              className="btn btn-primary !px-5 !py-2.5 text-sm"
+            >
               Book a free call
             </Link>
           </div>
@@ -108,7 +126,10 @@ export function Navbar() {
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden border-t border-line lg:hidden"
             >
-              <nav className="flex flex-col gap-1 px-3 py-5" aria-label="Mobile">
+              <nav
+                className="flex flex-col gap-1 px-3 py-5"
+                aria-label="Mobile"
+              >
                 {navLinks.map((l, i) => (
                   <motion.div
                     key={l.href}
@@ -126,10 +147,19 @@ export function Navbar() {
                   </motion.div>
                 ))}
                 <div className="mt-3 flex flex-col gap-3 px-3 pb-2">
-                  <Link href="/contact" onClick={closeOnNav} className="btn btn-primary w-full">
+                  <Link
+                    href="/contact"
+                    onClick={closeOnNav}
+                    className="btn btn-primary w-full"
+                  >
                     Book a free call
                   </Link>
-                  <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-ghost w-full">
+                  <a
+                    href={company.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-ghost w-full"
+                  >
                     <Icon name="whatsapp" className="h-4.5 w-4.5" /> WhatsApp us
                   </a>
                 </div>
