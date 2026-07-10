@@ -66,50 +66,6 @@ export function Hero() {
       />
       <AscentLine />
 
-      {/* Floating workflow cards: the paperwork, already handled (lg+) */}
-      <motion.div
-        {...rise(0.7)}
-        aria-hidden
-        className="absolute left-[4%] top-[15rem] hidden xl:block"
-      >
-        <div className="glass-card float-slow w-56 p-4" style={{ "--float-rot": "-5deg" } as React.CSSProperties}>
-          <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-tint text-brand">
-              <Icon name="shield" className="h-4.5 w-4.5" />
-            </span>
-            <div>
-              <p className="text-xs font-semibold text-ink">DPIIT Recognition</p>
-              <p className="text-[0.68rem] text-muted">Startup India</p>
-            </div>
-          </div>
-          <div className="mt-3 flex items-center gap-1.5 border-t border-line pt-2.5">
-            <Icon name="check" className="h-3.5 w-3.5 text-gold-deep" />
-            <span className="text-[0.7rem] font-medium text-ink-soft">Approved in 11 days</span>
-          </div>
-        </div>
-      </motion.div>
-      <motion.div
-        {...rise(0.85)}
-        aria-hidden
-        className="absolute right-[4%] top-[21rem] hidden xl:block"
-      >
-        <div className="glass-card float-slow-late w-56 p-4" style={{ "--float-rot": "4deg" } as React.CSSProperties}>
-          <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-tint text-brand">
-              <Icon name="file" className="h-4.5 w-4.5" />
-            </span>
-            <div>
-              <p className="text-xs font-semibold text-ink">GST Registration</p>
-              <p className="text-[0.68rem] text-muted">Filed &amp; tracked</p>
-            </div>
-          </div>
-          <div className="mt-3 flex items-center gap-1.5 border-t border-line pt-2.5">
-            <Icon name="clock" className="h-3.5 w-3.5 text-gold-deep" />
-            <span className="text-[0.7rem] font-medium text-ink-soft">Done in 3 days</span>
-          </div>
-        </div>
-      </motion.div>
-
       <div className="container-x relative flex flex-col items-center text-center">
         <motion.p {...rise(0)} className="eyebrow">
           {hero.eyebrow}
